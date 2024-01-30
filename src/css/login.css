@@ -1,0 +1,69 @@
+
+.divPantalla{
+
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FormLogin{
+    padding: 50px ;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 0 3px #b3b3b3;
+    height: 60vh;
+    min-width: 30vw;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.divForm{
+    width: auto;
+    height: auto;
+ 
+
+}
+
+h1{
+    font-family: "Roboto";
+    font-weight: 300;
+    margin: 0 auto;
+}
+h2{
+    font-family: "Roboto";
+    font-weight: 300;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.inputForm{
+    width: 70%;
+    height: 32px;
+    min-width: 400px;
+    margin: 0 auto;
+    border: none;
+    box-shadow: 0 0 1px #535353;
+}
+
+.imagenWhats{
+
+    width: 100px;
+    height: 150px;
+    margin: 0 auto;
+}
+.BotonLogin{
+
+    display: block;
+    margin-top: 30px;
+    width: 70%;
+    height: 40px;
+    min-width: 400px;
+    background-color: #00e676;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: medium;
+}

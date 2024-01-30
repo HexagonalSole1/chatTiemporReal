@@ -1,0 +1,38 @@
+.divBuscador{
+  display: flex;
+  align-items:center;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  border-bottom: 1px solid #f0f2f5; 
+}
+.buscador{
+  height: 60%;
+  width: 80%;
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 0px;
+  margin-left: 20px;
+  box-shadow: 0 0px 1px #bdbdbd;
+  
+}
+.buscador::placeholder{
+  transform: translateX(20px);
+  font-family: 'Roboto' ;
+
+}
+.buscadorIcon{
+  position: absolute;
+  left: 23%; 
+  cursor: pointer;
+}
+
+.filterIcon{
+ 
+}
+.divFilterIcon{
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}

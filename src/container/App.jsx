@@ -1,74 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import "../css/App.css"
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { ChatProvider } from '../context/ChatProvider';
+import "../css/App.css";
+import Chat from '../pages/chat';
+import Login from '../pages/login';
+import PrivateRoute from './PrivateRoute';
 
 const ChatApp = () => {
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
-  const [socket, setSocket] = useState(null);
-  const [currentRoom, setCurrentRoom] = useState(''); // Nuevo estado para la sala actual
-
-  useEffect(() => {
-    const newSocket = io('http://localhost:3001');
-
-    newSocket.on('connect', () => {
-      console.log('Conectado al servidor Socket.IO');
-
-      joinRoom(newSocket, 'Room1'); 
-    });
-
-    newSocket.on('chat message', (msg) => {
-      setMessages((prevMessages) => [...prevMessages, msg]);
-    });
-
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
-
-  const joinRoom = (socket, roomName) => {
-    socket.emit('join room', roomName);
-    console.log(`Unido a la sala ${roomName}`);
-    setCurrentRoom(roomName);
-  };
-
-  const handleSendMessage = () => {
-    if (socket && currentRoom) {
-      socket.emit('chat message', "Enviado por :" + newMessage, currentRoom);
-    }
-
-    setNewMessage('');
-  };
-
+  const UsuarioInfo = localStorage.getItem('UsuarioInfo'); // Reemplaza 'tu_clave_de_local_storage' con la clave que estás usando
+  
   return (
+    <>
+      <ChatProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Ruta Login */}
+            <Route path="/" element={<Login />} />
+            <Route path="/chat" element={<PrivateRoute element={<Chat />} />}/>
+            
+            
 
+         
 
-    <div className='divContainer'>
-
-      <div className='divNameRoom'>
-        <h2>Chat en {currentRoom}</h2>
-      </div>
-
-      <div className='divMessage'>
-        
-          {messages.map((msg, index) => (
-            <div key={index} className='mensaje'>{msg}</div>
-          ))}
-        
-      </div>
-
-
-      <div className='divSend'>
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-        />
-        <button onClick={handleSendMessage}>Enviar mensaje</button>
-      </div>
-    </div>
+          </Routes>
+        </BrowserRouter>
+      </ChatProvider>
+    </>
   );
 };
 
